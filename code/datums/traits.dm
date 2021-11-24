@@ -225,7 +225,7 @@
 /obj/trait/roboarms
 	name = "Robotic arms (0) \[Body\]"
 	cleanName = "Robotic arms"
-	desc = "Your arms have been replaced with light robotic arms."
+	desc = "Both your arms have been replaced with light robotic arms."
 	id = "roboarms"
 	icon_state = "robotarmsR"
 	points = 0
@@ -241,6 +241,29 @@
 					H.limbs.replace_with("r_arm", /obj/item/parts/robot_parts/arm/right/light, null , 0)
 					H.limbs.l_arm.holder = H
 					H.limbs.r_arm.holder = H
+					H.update_body()
+
+/obj/trait/singleroboarm
+	name = "Single robotic arm (0) \[Body\]"
+	cleanName = "Single robotic arm"
+	desc = "One of your arms has been replaced with a light robotic arm."
+	id = "singleroboarm"
+	icon_state = "robotarmsR"
+	points = 0 //since this gives you both silicon and carbon touch for artsci maybe it should cost something, but it still seems very minor
+	isPositive = 1
+	category = list("body")
+
+	onAdd(var/mob/owner)
+		SPAWN_DBG(4 SECONDS)
+			if(ishuman(owner))
+				var/mob/living/carbon/human/H = owner
+				if(H.limbs != null)
+					if (prob(50))
+						H.limbs.replace_with("l_arm", /obj/item/parts/robot_parts/arm/left/light, null , 0)
+						H.limbs.l_arm.holder = H
+					else
+						H.limbs.replace_with("r_arm", /obj/item/parts/robot_parts/arm/right/light, null , 0)
+						H.limbs.r_arm.holder = H
 					H.update_body()
 
 /obj/trait/syntharms
