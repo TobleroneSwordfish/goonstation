@@ -1284,7 +1284,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			L.give_to(src)
 
 /mob/living/proc/give_to(var/mob/living/M)
-	if (!M)
+	if (!M || M.restrained())
 		return
 
 #ifdef TWITCH_BOT_ALLOWED
