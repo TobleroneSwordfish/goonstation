@@ -99,6 +99,32 @@ What are the archived variables for?
 		trace_gas_refs[type] = trace_gas
 	. = trace_gas
 
+/// Map of string names to gas types so we can store gasses as names without going mad
+/datum/gas_mixture/var/static/list/trace_gas_types = list (
+	"sleeping_agent" = /datum/gas/sleeping_agent,
+	"oxygen_agent_b" = /datum/gas/oxygen_agent_b,
+	"volatile_fuel" = /datum/gas/volatile_fuel,
+	"rad_particles" = /datum/gas/rad_particles
+)
+
+// I hate this proc, why are there two different types of gasses?
+/// Takes a string name and adds amount of that gas type
+/datum/gas_mixture/proc/add_gas(gas, amount)
+	if (gas in trace_gas_types)
+		var/datum/gas/trace_gas = get_or_add_trace_gas_by_type(trace_gas_types[gas])
+		trace_gas.moles += amount
+	switch (gas)
+		if ("oxygen")
+			src.oxygen += amount
+		if ("toxins", "plasma")
+			src.toxins += amount
+		if("nitrogen")
+			src.nitrogen += amount
+		if("carbon dioxide")
+			src.carbon_dioxide += amount
+		if("farts")
+			src.farts += amount
+
 /// Retrieve a gas by type
 /datum/gas_mixture/proc/get_trace_gas_by_type(type)
 	if(trace_gas_refs) . = src.trace_gas_refs[type]

@@ -27,6 +27,10 @@ ABSTRACT_TYPE(/datum/plant)
 	var/harvestable = 1 // Does this plant even produce anything
 	var/harvests = 1 // How many times you can harvest this species
 	var/endurance = 0 // How much endurance this species normally has
+	var/datum/gas_mixture/gas = null // The gas emitted by this plant
+	var/default_gas = "oxygen" // What type of gas this plant normally emits
+	var/gas_amount = 30 //The amount of said gas type that is emitted to each adjacent tile
+	var/overpressure = FALSE // Should the plant emit gas over normal atmospheric pressure
 	var/isgrass = 0 // Always dies after one harvest
 	var/cantscan = 0 // Can't be scanned by an analyzer
 	var/nectarlevel = 0 //If nonzero, slowly tries to maintain this level of nectar reagent.
@@ -57,6 +61,11 @@ ABSTRACT_TYPE(/datum/plant)
 	var/static/base64_preview_cache = list() // Base64 preview images for plant types, for use in ui interfaces.
 
 	var/lasterr = 0
+
+	New()
+		..()
+		src.gas = new()
+		gas.add_gas(default_gas, gas_amount)
 
 	proc/getIconState(grow_level, datum/plantmutation/MUT)
 		if(MUT?.iconmod)
