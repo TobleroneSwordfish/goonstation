@@ -101,29 +101,43 @@ What are the archived variables for?
 
 /// Map of string names to gas types so we can store gasses as names without going mad
 /datum/gas_mixture/var/static/list/trace_gas_types = list (
-	"sleeping_agent" = /datum/gas/sleeping_agent,
-	"oxygen_agent_b" = /datum/gas/oxygen_agent_b,
-	"volatile_fuel" = /datum/gas/volatile_fuel,
-	"rad_particles" = /datum/gas/rad_particles
+	"sleeping agent" = /datum/gas/sleeping_agent,
+	"oxygen agent b" = /datum/gas/oxygen_agent_b,
+	"volatile fuel" = /datum/gas/volatile_fuel,
+	"rad particles" = /datum/gas/rad_particles
 )
 
 // I hate this proc, why are there two different types of gasses?
-/// Takes a string name and adds amount of that gas type
+/// Takes a string name and adds/removes amount of that gas type
 /datum/gas_mixture/proc/add_gas(gas, amount)
+	var/amount_added = 0
+	//it's atmos code, gotta have slightly pointless macros
+	#define ADD_GAS(GAS) \
+		if (amount < 0)\
+			amount_added = min(GAS, -amount);\
+		else\
+			amount_added = amount;\
+		GAS = max(GAS + amount, 0);
+
 	if (gas in trace_gas_types)
 		var/datum/gas/trace_gas = get_or_add_trace_gas_by_type(trace_gas_types[gas])
-		trace_gas.moles += amount
+		ADD_GAS(trace_gas.moles)
+		if (trace_gas.moles <= 0)
+			remove_trace_gas(trace_gas)
+		return amount_added
 	switch (gas)
 		if ("oxygen")
-			src.oxygen += amount
+			ADD_GAS(src.oxygen)
 		if ("toxins", "plasma")
-			src.toxins += amount
+			ADD_GAS(src.toxins)
 		if("nitrogen")
-			src.nitrogen += amount
+			ADD_GAS(src.nitrogen)
 		if("carbon dioxide")
-			src.carbon_dioxide += amount
+			ADD_GAS(src.carbon_dioxide)
 		if("farts")
-			src.farts += amount
+			ADD_GAS(src.farts)
+	#undef ADD_GAS
+	return amount_added
 
 /// Retrieve a gas by type
 /datum/gas_mixture/proc/get_trace_gas_by_type(type)

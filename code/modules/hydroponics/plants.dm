@@ -27,9 +27,9 @@ ABSTRACT_TYPE(/datum/plant)
 	var/harvestable = 1 // Does this plant even produce anything
 	var/harvests = 1 // How many times you can harvest this species
 	var/endurance = 0 // How much endurance this species normally has
-	var/datum/gas_mixture/gas = null // The gas emitted by this plant
-	var/default_gas = "oxygen" // What type of gas this plant normally emits
-	var/gas_amount = 30 //The amount of said gas type that is emitted to each adjacent tile
+	var/gas_emit = "oxygen" // What type of gas this plant normally emits
+	var/gas_amount = 20 //The amount of said gas type that is emitted
+	var/gas_absorb = "carbon dioxide" // What type of gas this plant normally absorbs
 	var/overpressure = FALSE // Should the plant emit gas over normal atmospheric pressure
 	var/isgrass = 0 // Always dies after one harvest
 	var/cantscan = 0 // Can't be scanned by an analyzer
@@ -62,11 +62,6 @@ ABSTRACT_TYPE(/datum/plant)
 
 	var/lasterr = 0
 
-	New()
-		..()
-		src.gas = new()
-		gas.add_gas(default_gas, gas_amount)
-
 	proc/getIconState(grow_level, datum/plantmutation/MUT)
 		if(MUT?.iconmod)
 			return "[MUT.iconmod]-G[grow_level]"
@@ -97,6 +92,14 @@ ABSTRACT_TYPE(/datum/plant)
 				. = "" // Empty but not null
 			src.base64_preview_cache[path] = .
 
+	///Returns the gas mix the plant emits scaled by the number of tiles it's spread over
+	proc/get_gas(tiles_split = 1)
+		var/datum/gas_mixture/gas = new()
+		gas.add_gas(src.gas_emit, src.gas_amount / tiles_split)
+
+	proc/absorb_gas(var/datum/gas_mixture/gas)
+		var/amount_removed = gas.add_gas(src.gas_absorb, -src.gas_amount)
+		gas.add_gas(gas_emit, amount_removed)
 
 	// fixed some runtime errors here - singh
 	// hyp procs now return 0 for success and continue, any other number for error codes

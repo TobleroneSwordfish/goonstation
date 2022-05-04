@@ -467,14 +467,21 @@
 				// If there's no mutation we just use the base special proc, obviously!
 				growing.HYPspecial_proc(src)
 
+		//absorb the gas from our own turf
+		var/turf/simulated/our_turf = get_turf(src)
+		if (istype(our_turf))
+			growing.absorb_gas(our_turf.return_air())
+
+		//emit the gas to adjacent turfs to prevent the pot moving around
+		var/list/turf/simulated/emit_turfs = list()
 		for (var/direction in cardinal)
 			var/turf/simulated/turf = get_turf(get_step(src, direction))
 			var/datum/gas_mixture/air = turf?.return_air()
 			if (istype(turf) && air && (growing.overpressure || MIXTURE_PRESSURE(air) < ONE_ATMOSPHERE - 3))
-				var/datum/gas_mixture/release_gas = new()
-				release_gas.copy_from(growing.gas)
-				release_gas.temperature = T20C
-				turf.assume_air(release_gas)
+				emit_turfs += turf
+		//emit the right amount of gas to each turf
+		for (var/turf/simulated/turf in emit_turfs)
+			turf.assume_air(growing.get_gas(length(emit_turfs)))
 
 		var/current_growth_level = 0
 		// This is entirely for updating the icon. Check how far the plant has grown and update

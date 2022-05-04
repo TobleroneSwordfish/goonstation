@@ -253,6 +253,7 @@ ABSTRACT_TYPE(/datum/plant/crop)
 	cropsize = 3
 	harvests = 10
 	endurance = 5
+	gas_amount = 100 // trees are the lungs of the earth
 	genome = 20
 	force_seed_on_harvest = 1
 	special_proc = 1 // for dogwood tree
