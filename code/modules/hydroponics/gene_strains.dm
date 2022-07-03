@@ -189,3 +189,12 @@
 	name = "Enzymatic"
 	desc = "Produce harvested from this plant may contain powerful enzymes."
 	reagents_to_add = list ("booster_enzyme")
+
+/datum/plant_gene_strain/overpressure
+	name = "Overpressure"
+	desc = "This plant will continue to emit gas above normal atmospheric pressure."
+
+	on_process(obj/machinery/plantpot/PP)
+		if (..())
+			return
+		PP.current.overpressure = TRUE
