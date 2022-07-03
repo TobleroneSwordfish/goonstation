@@ -95,10 +95,13 @@ ABSTRACT_TYPE(/datum/plant)
 	///Returns the gas mix the plant emits scaled by the number of tiles it's spread over
 	proc/get_gas(tiles_split = 1)
 		var/datum/gas_mixture/gas = new()
-		gas.add_gas(src.gas_emit, src.gas_amount / tiles_split)
+		//starts to emit more gas above 20 potency
+		var/amount = src.gas_amount * max(1, src.plantgenes.potency / 20)
+		gas.add_gas(src.gas_emit, amount / tiles_split)
 
 	proc/absorb_gas(var/datum/gas_mixture/gas)
-		var/amount_removed = gas.add_gas(src.gas_absorb, -src.gas_amount)
+		var/amount_to_remove = src.gas_amount * max(1, src.plantgenes.potency / 20)
+		var/amount_removed = gas.add_gas(src.gas_absorb, -amount_to_remove)
 		gas.add_gas(gas_emit, amount_removed)
 
 	// fixed some runtime errors here - singh
