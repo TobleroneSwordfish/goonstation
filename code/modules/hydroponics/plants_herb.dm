@@ -242,3 +242,15 @@ ABSTRACT_TYPE(/datum/plant/herb)
 	genome = 4
 	assoc_reagents = list("grassgro")
 	commuts = list(/datum/plant_gene_strain/growth_fast,/datum/plant_gene_strain/health_poor)
+
+/datum/plant/herb/aloe_vera
+	name = "Aloe vera"
+	seedcolor = "#41a541"
+	crop = /obj/item/plant/herb/aloe_vera
+	starthealth = 10
+	growtime = 50
+	harvtime = 80
+	harvests = 1
+	cropsize = 4
+	endurance = 1
+	assoc_reagents = list("salicylic_acid")

@@ -409,6 +409,37 @@
 			user.take_toxin_damage(10)
 			return
 
+/obj/item/plant/herb/aloe_vera
+	name = "aloe vera"
+	crop_suffix	= ""
+	desc = "A triangular green leaf, soothing gel oozing from the end."
+	icon_state = "aloe_vera"
+	var/apply_volume = 5
+	var/sooth_amount = 10
+
+	attack(mob/M, mob/user, def_zone, is_special)
+		if (!(iscarbon(M) || ismobcritter(M)))
+			return
+		actions.start(new /datum/action/bar/icon/callback(user, M, 1.5 SECONDS, .proc/apply_to, list(M, user), src.icon, src.icon_state, "[user] applies some of [src] to [M].", list(), src), user)
+
+	//slightly stolen mender code
+	proc/apply_to(mob/M as mob, mob/user as mob)
+		if (!src.reagents?.total_volume || src.icon_state == "aloe_vera_spent")
+			return
+
+		src.reagents.reaction(M, TOUCH, src.apply_volume)
+		src.reagents.trans_to(M, src.apply_volume)
+		src.reagents.remove_any(src.apply_volume)
+		logTheThing("combat", user, M, " applies [src] to [constructTarget(M,"combat")] [log_reagents(src)] at [log_loc(user)].")
+		M.HealDamage("All", burn = src.sooth_amount)
+		playsound(src, 'sound/items/sponge.ogg', 50, 1)
+
+		if (!src.reagents.total_volume)
+			src.reagents = null
+			src.icon_state = "aloe_vera_spent"
+
+
+
 // FLOWERS //
 
 /obj/item/plant/flower
