@@ -1417,6 +1417,20 @@ ABSTRACT_TYPE(/datum/objective/conspiracy)
 		var/datum/abilityHolder/arcfiend/AH = owner.current?.get_ability_holder(/datum/abilityHolder/arcfiend)
 		return (AH?.lifetime_energy >= powergoal)
 
+/datum/objective/specialist/follower
+	var/datum/objective/target
+
+	New(text, datum/mind/owner, datum/objective/target)
+		src.target = target
+		..()
+
+	set_up()
+		..()
+		src.explanation_text = target.explanation_text
+
+	check_completion()
+		return target.check_completion()
+
 /////////////////////////////////////////////////////////
 // Neatly packaged objective sets for your convenience //
 /////////////////////////////////////////////////////////

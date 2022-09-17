@@ -11,6 +11,7 @@
 #define ROLE_HEAD_REV "head_rev"
 #define ROLE_CONSPIRATOR "conspirator"
 #define ROLE_ARCFIEND "arcfiend"
+#define ROLE_FOLLOWER "follower"
 #define ROLE_MISC "misc"
 
 // special antagonist roles
