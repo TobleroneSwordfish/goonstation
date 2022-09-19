@@ -74,7 +74,8 @@
 	<a href='?src=\ref[src];action=plaguebringer'>Plaguebringer wraith</a> |
 	<a href='?src=\ref[src];action=harbinger'>Harbinger wraith</a> |
 	<a href='?src=\ref[src];action=trickster'>Trickster wraith</a> |
-	<a href='?src=\ref[src];action=plaguerat'>Plague rat</a>
+	<a href='?src=\ref[src];action=plaguerat'>Plague rat</a> |
+	<a href='?src=\ref[src];action=blobfollower'>Blob follower</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Ghost roles</b>
 	<a href='?src=\ref[src];action=ghostdrone'>Ghostdrone</a> |
@@ -280,6 +281,9 @@
 			if ("zombie")
 				window_title = "Zombie Basics"
 				filename = "html/traitorTips/zombieTips.html"
+			if ("blobfollower")
+				window_title = "Blob following"
+				filename = "html/traitorTips/blobfollowerTips.html"
 
 			// ghost roles
 			if ("ghostdrone")
