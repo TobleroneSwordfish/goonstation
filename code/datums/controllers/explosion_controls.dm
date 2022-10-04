@@ -156,7 +156,7 @@ var/datum/explosion_controller/explosions
 /obj/var/datum/explosion/last_explosion = null
 
 /obj/disposing()
-	src.last_explosion = null
+	src.last_explosion = 1 //trust me this not being null is important
 	. = ..()
 
 /datum/explosion
