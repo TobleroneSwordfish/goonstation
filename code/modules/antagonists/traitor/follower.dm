@@ -13,8 +13,8 @@
 
 /datum/antagonist/follower/flock
 	assign_objectives()
-		new /datum/objective("Help the Flock accomplish its goals by any means necessary.")
+		new /datum/objective("Help the Flock accomplish its goals by any means necessary.", src.owner)
 
 /datum/antagonist/follower/blob
 	assign_objectives()
-		new /datum/objective("Help the Flock accomplish its goals by any means necessary.")
+		new /datum/objective("Help the Blob accomplish its goals by any means necessary.", src.owner)
