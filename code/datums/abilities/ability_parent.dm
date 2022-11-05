@@ -174,12 +174,9 @@
 
 		abilitystat.maptext = "<span class='vga l vt ol'>[msg] </span>"
 		abilitystat.maptext_width = longest_line * 9 //font size is 9px
-		if (i > 2)
-			abilitystat.maptext_height = ((i+1) % 2) * 32
-			abilitystat.maptext_y = -abilitystat.maptext_height + 16
-		else if (abilitystat.maptext_height > 32)
-			abilitystat.maptext_height = initial(abilitystat.maptext_height)
-			abilitystat.maptext_y = initial(abilitystat.maptext_y)
+
+		abilitystat.maptext_height = i * 15
+		abilitystat.maptext_y = -abilitystat.maptext_height + 32
 
 	proc/deepCopy()
 		var/datum/abilityHolder/copy = new src.type
