@@ -106,8 +106,8 @@ toxic - poisons
 	stun = 25
 
 /datum/projectile/energy_bolt/burst
-	shot_number = 3
-	cost = 75
+	shot_number = 2
+	cost = 50
 	sname = "burst stun"
 
 

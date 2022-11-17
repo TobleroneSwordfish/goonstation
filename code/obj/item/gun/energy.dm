@@ -166,8 +166,10 @@
 		UpdateIcon()
 		if(istype(src.current_projectile, /datum/projectile/energy_bolt/burst))
 			src.spread_angle = 6
+			src.shoot_delay = 6 DECI SECONDS
 		else
 			src.spread_angle = initial(src.spread_angle)
+			src.shoot_delay = initial(src.shoot_delay)
 
 	borg
 		cell_type = /obj/item/ammo/power_cell/self_charging/disruptor
