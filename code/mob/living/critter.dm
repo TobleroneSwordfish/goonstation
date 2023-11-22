@@ -1428,6 +1428,7 @@ ADMIN_INTERACT_PROCS(/mob/living/critter, proc/modify_health, proc/admincmd_atta
 			return !HH.limb.is_on_cooldown() && can_act(src,TRUE) //if we have limb cooldowns, use that, otherwise use can_act()
 		return can_act(src,TRUE)
 
+	/// Used for critters that range attack only with abilities
 	proc/can_critter_range_ability()
 		return FALSE
 
