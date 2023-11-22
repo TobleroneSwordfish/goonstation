@@ -245,6 +245,11 @@
 		HH.name = "right arm"
 		HH.limb_name = "mauler claws"
 
+	critter_ability_attack(mob/target)
+		var/datum/targetable/critter/robofast/ability = src.abilityHolder.getAbility(/datum/targetable/critter/robofast)
+		if (!ability.disabled && ability.cooldowncheck())
+			ability.handleCast(target)
+			return TRUE
 
 	get_melee_protection(zone, damage_type)
 		return 4
