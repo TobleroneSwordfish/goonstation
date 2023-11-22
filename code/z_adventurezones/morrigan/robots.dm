@@ -45,7 +45,7 @@
 	health_brute = 20
 	health_burn = 10
 	health_burn_vuln = 0.7
-	ai_type = /datum/aiHolder/aggressive
+	ai_type = /datum/aiHolder/aggressive/ranged_ability
 
 	New()
 		..()
@@ -82,6 +82,16 @@
 
 	setup_equipment_slots()
 		return
+
+	critter_ability_attack(var/target)
+		var/datum/targetable/critter/hookshot/ability = src.abilityHolder.getAbility(/datum/targetable/critter/hookshot)
+		if (!ability.disabled && ability.cooldowncheck())
+			ability.handleCast(target)
+			return TRUE
+
+	can_critter_range_ability()
+		var/datum/targetable/critter/hookshot/ability = src.abilityHolder.getAbility(/datum/targetable/critter/hookshot)
+		return !ability.disabled && ability.cooldowncheck()
 
 /mob/living/critter/robotic/gunbot/morrigan/riotbot
 	name = "Syndicate Suppression Unit"
@@ -128,11 +138,10 @@
 		HH.can_range_attack = TRUE
 
 	critter_ability_attack(mob/target)
-		var/datum/targetable/werewolf/werewolf_defense = src.abilityHolder.getAbility(/datum/targetable/werewolf/werewolf_defense)
-		if (!werewolf_defense.disabled && werewolf_defense.cooldowncheck())
-			werewolf_defense.handleCast(target)
+		var/datum/targetable/critter/shieldproto/ability = src.abilityHolder.getAbility(/datum/targetable/critter/shieldproto)
+		if (!ability.disabled && ability.cooldowncheck())
+			ability.handleCast(target)
 			return TRUE
-
 
 	get_melee_protection(zone, damage_type)
 		return 4
@@ -182,6 +191,12 @@
 		HH.icon_state = "hand_martian"
 		HH.name = "Soldering Iron"
 		HH.limb_name = "soldering iron"
+
+	critter_ability_attack(mob/target)
+		var/datum/targetable/critter/nano_repair/ability = src.abilityHolder.getAbility(/datum/targetable/critter/nano_repair)
+		if (!ability.disabled && ability.cooldowncheck())
+			ability.handleCast(target)
+			return TRUE
 
 	get_melee_protection(zone, damage_type)
 		return 4

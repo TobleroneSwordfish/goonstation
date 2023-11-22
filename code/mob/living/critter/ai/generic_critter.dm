@@ -179,6 +179,48 @@
 /datum/aiTask/succeedable/critter/range_attack/on_reset()
 	has_started = FALSE
 
+/datum/aiTask/sequence/goalbased/critter/range_ability
+	name = "using a ranged ability"
+	weight = 15 // ability behaviour even higher priority than attack since we want them to use it whenever they can
+	ai_turbo = TRUE //attack behaviour gets a speed boost for robustness
+	distance_from_target = 4
+	max_dist = 7
+
+/datum/aiTask/sequence/goalbased/critter/range_ability/New(parentHolder, transTask) //goalbased aitasks have an inherent movement component
+	..(parentHolder, transTask)
+	add_task(holder.get_instance(/datum/aiTask/succeedable/critter/range_ability, list(holder)))
+
+/datum/aiTask/sequence/goalbased/critter/range_ability/precondition()
+	var/mob/living/critter/C = holder.owner
+	return C.can_critter_range_ability()
+
+/datum/aiTask/sequence/goalbased/critter/range_ability/get_targets()
+	var/mob/living/critter/C = holder.owner
+	return C.seek_target(src.max_dist)
+
+/datum/aiTask/succeedable/critter/range_ability
+	name = "ranged ability subtask"
+	/// Maximum range to engage the target from
+	var/max_range = 6
+	/// Minimum range from the target before trying to flee
+	var/min_range = 3
+	var/finished = FALSE
+
+/datum/aiTask/succeedable/critter/range_ability/failed()
+	if(!holder.owner || !holder.target || BOUNDS_DIST(holder.owner, holder.target) > src.max_range) //the tasks fails and is re-evaluated if the target is not in range
+		return TRUE
+
+/datum/aiTask/succeedable/critter/range_ability/succeeded()
+	return src.finished
+
+/datum/aiTask/succeedable/critter/range_ability/on_tick()
+	var/mob/living/critter/C = holder.owner
+	var/mob/T = holder.target
+	if(C && T && BOUNDS_DIST(C, T) > src.min_range)
+		holder.owner.set_dir(get_dir(C, T))
+		C.critter_ability_attack(T)
+		src.finished = TRUE
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------//
 
 /// This one makes the critter move towards a corpse returned from holder.owner.seek_scavenge_target()

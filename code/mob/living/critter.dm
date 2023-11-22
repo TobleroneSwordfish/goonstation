@@ -722,8 +722,9 @@ ADMIN_INTERACT_PROCS(/mob/living/critter, proc/modify_health, proc/admincmd_atta
 		if ((HH.can_range_attack || HH.can_special_attack()))
 			if (GET_DIST(src, target) > 1)
 				hand_range_attack(target, params)
-				return
+				return TRUE
 		if (HH.can_attack)
+			. = TRUE
 			if (ismob(target))
 				if (a_intent != INTENT_HELP)
 					if (mob_flags & AT_GUNPOINT)
@@ -1426,6 +1427,9 @@ ADMIN_INTERACT_PROCS(/mob/living/critter, proc/modify_health, proc/admincmd_atta
 		if(HH?.limb)
 			return !HH.limb.is_on_cooldown() && can_act(src,TRUE) //if we have limb cooldowns, use that, otherwise use can_act()
 		return can_act(src,TRUE)
+
+	proc/can_critter_range_ability()
+		return FALSE
 
 	/// Used for generic critter mobAI - returns TRUE when the mob is able to scavenge. For handling cooldowns, or other scavenge blocking conditions.
 	proc/can_critter_scavenge()

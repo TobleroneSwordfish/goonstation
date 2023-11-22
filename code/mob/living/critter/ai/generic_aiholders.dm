@@ -31,6 +31,16 @@ if there is otherwise unique behaviour which you add to another mob consider mov
 	transition_tasks += holder.get_instance(/datum/aiTask/timed/wander/critter/aggressive, list(src.holder, src))
 	transition_tasks += holder.get_instance(/datum/aiTask/sequence/goalbased/critter/attack, list(src.holder, src))
 
+///Can be melee but also has a ranged ability
+/datum/aiHolder/aggressive/ranged_ability
+	New()
+		. = ..()
+		default_task = get_instance(/datum/aiTask/prioritizer/critter/aggressive/ranged_ability, list(src))
+
+/datum/aiTask/prioritizer/critter/aggressive/ranged_ability/New()
+	..()
+	transition_tasks += holder.get_instance(/datum/aiTask/sequence/goalbased/critter/range_ability, list(src.holder, src))
+
 /// Agressive Wanderer scavenger
 /datum/aiHolder/aggressive/scavenger
 	New()
