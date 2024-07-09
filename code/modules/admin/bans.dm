@@ -312,6 +312,7 @@
 
 	var/list/durations = list(
 		"Permanent" = "",
+		"Untilappeal" = -1,
 		"Half hour" = 30 MINUTES,
 		"One hour" = 1 HOUR,
 		"Six hours" = 6 HOURS,
@@ -339,7 +340,8 @@
 		"compId" = compId,
 		"ip" = ip,
 		"reason" = reason,
-		"duration" = duration
+		"duration" = duration,
+		"requires_appeal" = !(duration == "")
 	)
 
 /client/proc/addBanTemp(mob/target)
@@ -348,7 +350,7 @@
 	if (!data) return
 
 	try
-		bansHandler.add(data["akey"], data["server"], data["ckey"], data["compId"], data["ip"], data["reason"], data["duration"])
+		bansHandler.add(data["akey"], data["server"], data["ckey"], data["compId"], data["ip"], data["reason"], data["duration"], data["requires_appeal"])
 	catch (var/exception/e)
 		tgui_alert(src.mob, "Failed to add ban because: [e.name]", "Error")
 

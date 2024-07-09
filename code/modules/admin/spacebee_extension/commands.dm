@@ -191,6 +191,7 @@
 
 		data["text_ban_length"] = length
 		data["reason"] = reason
+		data["requires_appeal"] = !(length == "perma")
 		if (length == "hour")
 			length = 60
 		else if (length == "day")
@@ -223,7 +224,8 @@
 			data["compID"],
 			data["ip"],
 			data["reason"],
-			data["mins"] * 60 * 10
+			data["mins"] * 60 * 10,
+			data["requires_appeal"]
 		)
 
 /datum/spacebee_extension_command/serverban
