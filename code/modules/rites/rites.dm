@@ -42,8 +42,13 @@
 /datum/rite/a_nest_of_wires
 	//mmm yes bird
 	trigger(mob/user, obj/item/item, obj/item/wire_nest/nest)
-		if (istype(item, /obj/item/reagent_containers/food/snacks/ingredient/egg)) //battery?
-			return ..() //TODO: handle this not being repeatable
+		if (!user.traitHolder.hasTrait("training_chaplain"))
+			return
+		if (istype(item, /obj/item/cell))
+			elecflash(nest, 1)
+			qdel(item)
+			qdel(nest)
+			return ..()
 
 /obj/item/wire_nest
 	name = "tangle of wires"
