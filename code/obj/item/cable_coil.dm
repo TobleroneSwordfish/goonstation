@@ -233,6 +233,12 @@ obj/item/cable_coil/dropped(mob/user)
 		. += "Its conductive layer is made out of [conductor]."
 
 /obj/item/cable_coil/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/cable_coil) && !src.check_valid_stack(W))
+		src.change_stack_amount(-1)
+		var/obj/item/wire_nest/nest = new(null, src)
+		nest.Attackby(W, user)
+		user.put_in_hand_or_drop(nest)
+		return
 	if (issnippingtool(W) && src.amount > 1)
 		var/cut_amount = round(input("How long of a wire do you wish to cut?","Length of [src.amount]",1) as num)
 		if (!in_interact_range(src, user))

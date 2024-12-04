@@ -811,6 +811,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks)
 
 			if (ismob(target) || (isobj(target) && target:flags & NOSPLASH))
 				return
+			TRIGGER_RITE(/datum/rite/blood_to_void, user, src, target)
 			boutput(user, SPAN_NOTICE("You [src.splash_all_contents ? "pour all of" : "apply [amount_per_transfer_from_this] units of"] the solution onto [target]."))
 			logTheThing(LOG_CHEMISTRY, user, "pours [src] onto [constructTarget(target,"combat")] [log_reagents(src)] at [log_loc(user)].") // Added location (Convair880).
 			reagents.physical_shock(14)

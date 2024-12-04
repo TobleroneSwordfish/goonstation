@@ -2242,6 +2242,7 @@ DEFINE_FLOORS(solidcolor/black/fullbright,
 	if (!src.hidden_contents)
 		src.hidden_contents = new(src)
 	AM.set_loc(src.hidden_contents)
+	TRIGGER_RITE(/datum/rite/feeding_the_floor, usr, AM, src)
 
 /turf/simulated/floor/MouseDrop_T(atom/A, mob/user as mob)
 	..(A,user)
