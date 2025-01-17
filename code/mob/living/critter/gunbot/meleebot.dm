@@ -39,6 +39,11 @@
 	setup_equipment_slots()
 		return
 
+	setStatus(statusId, duration, optional)
+		if (statusId == "slowed")
+			return
+		. = ..()
+
 /mob/living/critter/robotic/gunbot/meleebot/strong // Midrounds
 	hand_count = 3
 	health_brute = 75
@@ -49,12 +54,29 @@
 
 	setup_hands()
 		. = ..()
-		var/datum/handHolder/HH = hands[3]
+		var/datum/handHolder/HH = hands[1]
+		HH.limb = new /datum/limb/claw/gunbot
+		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon_state = "handl"
+		HH.name = "left arm"
+		HH.limb_name = "mauler claws"
+
+		HH = hands[2]
+		HH.limb = new /datum/limb/claw/gunbot
+		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon_state = "handr"
+		HH.name = "right arm"
+		HH.limb_name = "mauler claws"
+
+		HH = hands[3]
 		HH.limb = new /datum/limb/small_critter/strong
 		HH.icon = 'icons/mob/critter_ui.dmi'
 		HH.icon_state = "handn"
 		HH.name = "gunbothand"
 		HH.limb_name = "gunbot hands"
+
+/datum/limb/claw/gunbot
+	damage = 20
 
 /datum/targetable/critter/hookshot
 	name = "GRABBER tech"
