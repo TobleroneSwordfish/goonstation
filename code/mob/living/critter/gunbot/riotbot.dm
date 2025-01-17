@@ -87,7 +87,7 @@
 /datum/targetable/critter/shieldproto
 	name = "AP Shield"
 	desc = "Knock assailants back then destroy incoming projectiles"
-	// icon_state = "robopush" TODO: get this icon
+	icon_state = "robopush"
 	cooldown = 10 SECONDS
 	targeted = TRUE
 	target_anything = TRUE
