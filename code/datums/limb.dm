@@ -21,6 +21,8 @@
 	var/can_gun_grab = TRUE
 	/// if true, bypasses unarmed attack immunity for cyborgs (separate to weird special case handling for them)
 	var/can_beat_up_robots = FALSE
+	/// Bypass to allow special attacks to work on help/grab intent, kind of dumb but necessary
+	var/use_specials_on_all_intents = FALSE
 
 	New(var/obj/item/parts/holder)
 		..()

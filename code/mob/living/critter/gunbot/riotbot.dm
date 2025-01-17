@@ -67,7 +67,17 @@
 
 	setup_hands()
 		. = ..()
-		var/datum/handHolder/HH = hands[3]
+		var/datum/handHolder/HH = hands[2]
+		HH.limb = new /datum/limb/syndie_shield
+		HH.name = "Mod. 81 Alcor Shield"
+		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon_state = "shield"
+		HH.limb_name = "Mod. 81 Alcor Shield"
+		HH.can_hold_items = FALSE
+		HH.can_attack = TRUE
+		HH.can_range_attack = TRUE
+
+		HH = hands[3]
 		HH.limb = new /datum/limb/small_critter/strong
 		HH.icon = 'icons/mob/critter_ui.dmi'
 		HH.icon_state = "handn"
@@ -77,7 +87,7 @@
 /datum/targetable/critter/shieldproto
 	name = "AP Shield"
 	desc = "Knock assailants back then destroy incoming projectiles"
-	icon_state = "robopush"
+	// icon_state = "robopush" TODO: get this icon
 	cooldown = 10 SECONDS
 	targeted = TRUE
 	target_anything = TRUE
@@ -98,6 +108,7 @@
 	icon_state = "crescent_white"
 	shot_sound = 'sound/weapons/pushrobo.ogg'
 	damage = 10
+	projectile_speed = 18
 
 	on_hit(atom/hit, angle, var/obj/projectile/O)
 		var/dir = get_dir(O.shooter, hit)
@@ -109,3 +120,19 @@
 			var/throw_type = mob.can_lie ? THROW_GUNIMPACT : THROW_NORMAL
 			mob.throw_at(get_edge_target_turf(hit, dir),(pow-7)/2,1, throw_type = throw_type)
 			mob.emote("twitch_v")
+
+	tick(obj/projectile/O)
+		. = ..()
+		for (var/obj/projectile/other in view(1, O))
+			if (other != O)
+				other.die()
+
+/datum/limb/syndie_shield
+	use_specials_on_all_intents = TRUE
+
+	attack_range(atom/target, mob/user, params)
+		src.harm_special.pixelaction(target, params, user)
+
+	New(obj/item/parts/holder)
+		. = ..()
+		src.harm_special = new /datum/item_special/barrier/syndie
