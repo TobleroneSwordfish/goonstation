@@ -50,7 +50,14 @@
 
 	setup_hands()
 		. = ..()
-		var/datum/handHolder/HH = hands[3]
+		var/datum/handHolder/HH = hands[2]
+		HH.limb = new /datum/limb/deconstructor
+		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon_state = "hand_martian"
+		HH.name = "Deconstructor"
+		HH.limb_name = "deconstructor"
+
+		HH = hands[3]
 		HH.limb = new /datum/limb/small_critter/strong
 		HH.icon = 'icons/mob/critter_ui.dmi'
 		HH.icon_state = "handn"
@@ -92,3 +99,15 @@
 			robot.HealDamage("all", 10, 10, 0)
 		playsound(holder.owner, 'sound/items/welder.ogg', 80, 0)
 		return FALSE
+
+//Borrowing this, sorry Azrun!
+/obj/item/salvager/gunbot
+	use_power(watts)
+		return TRUE
+
+/datum/limb/deconstructor
+	var/obj/item/salvager/gunbot/tool = new
+
+	attack_hand(atom/target, mob/user, reach, params, location, control)
+		tool.set_loc(user) //hehe hoohoo
+		tool.AfterAttack(target, user, reach, params)
