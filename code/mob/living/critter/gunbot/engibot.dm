@@ -72,6 +72,7 @@
 
 /datum/limb/solder
 	can_pickup_item = FALSE
+	can_beat_up_robots = TRUE
 
 	help(mob/target, var/mob/living/user)
 		..()
@@ -166,12 +167,17 @@
 
 //Borrowing this, sorry Azrun!
 /obj/item/salvager/gunbot
+	name = "deconstructor"
 	use_power(watts)
 		return TRUE
 
 /datum/limb/deconstructor
+	can_pickup_item = FALSE
 	var/obj/item/salvager/gunbot/tool = new
 
 	attack_hand(atom/target, mob/user, reach, params, location, control)
-		tool.set_loc(user) //hehe hoohoo
-		tool.AfterAttack(target, user, reach, params)
+		tool.set_loc(user)
+		if (ismob(target))
+			target.Attackby(src.tool, user, params)
+		else
+			tool.AfterAttack(target, user, reach, params)
