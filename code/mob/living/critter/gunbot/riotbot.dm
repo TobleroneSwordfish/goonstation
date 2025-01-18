@@ -118,7 +118,7 @@
 			var/mob/living/mob = hit
 			mob.do_disorient(stamina_damage = 20, knockdown = 0, stunned = 0, disorient = pow, remove_stamina_below_zero = 0)
 			var/throw_type = mob.can_lie ? THROW_GUNIMPACT : THROW_NORMAL
-			mob.throw_at(get_edge_target_turf(hit, dir),(pow-7)/2,1, throw_type = throw_type)
+			mob.throw_at(get_edge_target_turf(hit, dir), pow/2, 1, throw_type = throw_type)
 			mob.emote("twitch_v")
 
 	tick(obj/projectile/O)
