@@ -8,6 +8,7 @@
 	health_burn = 10
 	health_burn_vuln = 0.7
 	ai_type = /datum/aiHolder/aggressive
+	stamina_regen = 20
 
 	New()
 		..()
