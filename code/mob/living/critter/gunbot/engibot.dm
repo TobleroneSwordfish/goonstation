@@ -95,8 +95,9 @@
 	cast(atom/target)
 		if (..())
 			return TRUE
-		for (var/mob/living/critter/robotic/robot in range(5, holder.owner))
-			robot.HealDamage("all", 10, 10, 0)
+		for (var/mob/living/robot in range(5, holder.owner))
+			if (issilicon(robot) || istype(robot, /mob/living/critter/robotic))
+				robot.HealDamage("all", 10, 10, 0)
 		playsound(holder.owner, 'sound/items/welder.ogg', 80, 0)
 		return FALSE
 
