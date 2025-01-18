@@ -41,7 +41,7 @@
 
 /mob/living/critter/robotic/gunbot/medibot/strong
 	hand_count = 3
-	health_brute = 75
+	health_brute = 50
 	health_brute_vuln = 1
 	health_burn = 50
 	health_burn_vuln = 1

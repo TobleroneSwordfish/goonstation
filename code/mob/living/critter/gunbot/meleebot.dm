@@ -48,7 +48,7 @@
 	hand_count = 3
 	health_brute = 75
 	health_brute_vuln = 1
-	health_burn = 50
+	health_burn = 75
 	health_burn_vuln = 1
 	is_npc = FALSE
 
