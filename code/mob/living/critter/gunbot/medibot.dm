@@ -53,7 +53,7 @@
 		HH.limb = new /datum/limb/gun/kinetic/syringe/gunbot_heal
 		HH.name = "Heal Syringe Gun"
 		HH.icon = 'icons/mob/critter_ui.dmi'
-		HH.icon_state = "syringegun"
+		HH.icon_state = "syringegun+"
 		HH.limb_name = "Heal Syringe Gun"
 		HH.can_hold_items = FALSE
 		HH.can_attack = TRUE
@@ -75,7 +75,7 @@
 	damage = 10
 	hit_ground_chance = 10
 	shot_sound = 'sound/effects/syringeproj.ogg'
-	venom_id = list("formaldehyde", "atropine") //TODO: make this work
+	venom_id = list("formaldehyde", "atropine")
 	inject_amount = 3.5
 
 /datum/projectile/syringefilled/heal
