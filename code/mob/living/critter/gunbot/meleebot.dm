@@ -92,9 +92,6 @@
 			return TRUE
 
 		var/obj/projectile/proj = initialize_projectile_pixel_spread(holder.owner, new/datum/projectile/special/robohook, get_turf(target))
-		//TODO: what the fuck is this doing
-		while (!proj || proj.disposed)
-			proj = initialize_projectile_pixel_spread(holder.owner, new/datum/projectile/special/robohook, get_turf(target))
 
 		proj.special_data["owner"] = holder.owner
 		proj.targets = list(target)
@@ -126,7 +123,7 @@
 				playsound(M, 'sound/impact_sounds/stabreel.ogg', 50, 0)
 				M.TakeDamageAccountArmor("All", rand(3,4), 0, 0, DAMAGE_CUT)
 				M.force_laydown_standup()
-				M.changeStatus("paralysis", 5 SECONDS)
+				M.changeStatus("stunned", 5 SECONDS)
 				M.visible_message("<span class='alert'>[M] gets grabbed by a hook and dragged!</span>")
 
 		previous_line = DrawLine(P.special_data["owner"], P, /obj/line_obj/tentacle ,'icons/obj/projectiles.dmi',"mid_gungrab",1,1,"start_gungrab","end_gungrab",OBJ_LAYER,1)
