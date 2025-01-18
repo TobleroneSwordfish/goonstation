@@ -107,7 +107,7 @@
 	dissipation_delay = 7
 	icon_state = ""
 	damage = 1
-	hit_ground_chance = 0
+	hit_ground_chance = 100
 	shot_sound = 'sound/impact_sounds/robograb.ogg'
 	var/list/previous_line = list()
 
