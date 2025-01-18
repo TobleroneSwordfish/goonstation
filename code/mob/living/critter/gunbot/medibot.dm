@@ -74,14 +74,14 @@
 	dissipation_delay = 7
 	damage = 10
 	hit_ground_chance = 10
-	shot_sound = 'sound/effects/syringeproj.ogg'
+	shot_sound = 'sound/weapons/medsmg.ogg'
 	venom_id = list("formaldehyde", "atropine")
 	inject_amount = 3.5
 
 /datum/projectile/syringefilled/heal
 	sname = "Healing Needle"
 	name = "Healing Needle"
-	shot_sound = 'sound/weapons/medsmg.ogg'
+	shot_sound = 'sound/effects/syringeproj.ogg'
 	venom_id = list("salicylic_acid", "saline")
 	inject_amount = 7.5
 	damage = 0
