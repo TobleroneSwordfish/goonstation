@@ -104,16 +104,16 @@
 
 /datum/targetable/critter/robofast
 	name = "ER Speed Mode"
-	desc = "Overcharge your cell to speed yourself up."
+	desc = "Overcharge your cell to remove all stuns and speed yourself up."
 	icon_state = "robospeed"
-	cooldown = 45 SECONDS
+	cooldown = 30 SECONDS
 	targeted = FALSE
 
 	cast(atom/target)
 		if (..())
 			return TRUE
 		holder.owner.delStatus("stunned")
-		holder.owner.delStatus("weakened")
+		holder.owner.delStatus("knockdown")
 		holder.owner.delStatus("paralysis")
 		holder.owner.delStatus("slowed")
 		holder.owner.delStatus("disorient")
