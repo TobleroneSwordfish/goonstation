@@ -48,6 +48,12 @@
 	health_burn_vuln = 1
 	is_npc = FALSE
 
+	New()
+		. = ..()
+		//the player controlled one gets a manual heal
+		abilityHolder.removeAbility(/datum/targetable/critter/nano_repair)
+		abilityHolder.addAbility(/datum/targetable/critter/repair_robot)
+
 	setup_hands()
 		. = ..()
 		var/datum/handHolder/HH = hands[2]
@@ -100,6 +106,63 @@
 				robot.HealDamage("all", 10, 10, 0)
 		playsound(holder.owner, 'sound/items/welder.ogg', 80, 0)
 		return FALSE
+
+/datum/targetable/critter/repair_robot
+	name = "Repair robot"
+	desc = "Begin performing repairs on a robot."
+	icon_state = "roboheal"
+	targeted = TRUE
+	cooldown = 2 SECONDS
+
+	tryCast(atom/target, params)
+		if (!(issilicon(target) || istype(target, /mob/living/critter/robotic)))
+			boutput(holder.owner, SPAN_ALERT("You can't repair that!"))
+			return CAST_ATTEMPT_FAIL_NO_COOLDOWN
+		. = ..()
+
+	cast(atom/target)
+		. = ..()
+		if (!actions.hasAction(holder.owner, "repair_robot"))
+			actions.start(new /datum/action/bar/icon/repair_robot(holder.owner, target), holder.owner)
+
+/datum/action/bar/icon/repair_robot
+	id = "repair_robot"
+	duration = 1 SECOND
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ATTACKED
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "gears"
+	var/mob/living/user
+	var/mob/living/target
+
+	New(user, target)
+		. = ..()
+		src.user = user
+		src.target = target
+
+	onUpdate()
+		..()
+		if(BOUNDS_DIST(user, target) > 0 || user == null || target == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		var/sound = pick('sound/effects/elec_bzzz.ogg', 'sound/items/Welder.ogg', 'sound/items/mining_drill.ogg', 'sound/impact_sounds/Metal_Clang_1.ogg', 'sound/impact_sounds/Metal_Clang_3.ogg')
+		attack_twitch(user)
+		playsound(user.loc, sound, 50, TRUE)
+
+	onStart()
+		..()
+		if(BOUNDS_DIST(user, target) > 0 || user == null || target == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		src.loopStart()
+
+	onEnd()
+		. = ..()
+		target.HealDamage("All", 20, 20)
+		if (target.health >= target.max_health)
+			boutput(src.user, SPAN_NOTICE("[target] is fully healed"))
+			return
+		src.onRestart()
+
 
 //Borrowing this, sorry Azrun!
 /obj/item/salvager/gunbot
