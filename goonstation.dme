@@ -2527,6 +2527,7 @@
 #include "code\world\initialization\2_New.dm"
 #include "code\world\initialization\3_init.dm"
 #include "code\z_adventurezones\afterlife.dm"
+#include "code\z_adventurezones\balor.dm"
 #include "code\z_adventurezones\biodome.dm"
 #include "code\z_adventurezones\carcosa.dm"
 #include "code\z_adventurezones\debris.dm"
