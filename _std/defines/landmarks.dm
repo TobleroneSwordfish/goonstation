@@ -100,6 +100,9 @@
 // misc adventure zone stuff
 #define LANDMARK_SUMMON "summon"
 
+//balor
+#define LANDMARK_BALOR_START "balor"
+
 /// allowed turfs for telesci
 #define LANDMARK_TELESCI "telesci"
 #define LANDMARK_LRT "lrt landmark"
