@@ -140,3 +140,20 @@
 			leaveresidual(src.loc)
 			showswirl(target_turf)
 			leaveresidual(target_turf)
+
+/obj/port_a_prisoner
+	name = "Port-A-Prisoner"
+	desc = "A portable cage created with stolen technology"
+	icon = 'icons/obj/cloning.dmi'
+	icon_state = "port_a_brig_synd"
+	var/mob/occupant = null
+
+/obj/port_a_prisoner/proc/force_in(var/mob/living/M)
+	boutput(M, "<span class='alert'> You suddenly find yourself locked up...</span>")
+	src.occupant = M
+	M.set_loc(src)
+
+/obj/port_a_prisoner/proc/eject_and_del()
+	src.occupant?.set_loc(src.loc)
+	src.occupant = null
+	qdel(src)
