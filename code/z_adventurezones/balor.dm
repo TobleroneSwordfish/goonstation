@@ -27,9 +27,12 @@
 					if (ON_COOLDOWN(src, "transmit", 10 SECONDS))
 						message_host("command=nack") //TODO: handle this maybe
 						return
-					var/turf/target_turf = get_turf(landmarks[LANDMARK_BALOR_START][1])
+					var/turf/target_turf = get_turf(landmarks[LANDMARK_BALOR_ENTRANCE][1])
 					for (var/mob/living/M in get_turf(src))
 						do_teleport(M, target_turf, use_teleblocks = FALSE)
+						var/obj/port_a_prisoner/prison = new /obj/port_a_prisoner(get_turf(M))
+						prison.force_in(M)
+
 					showswirl_out(src.loc)
 					leaveresidual(src.loc)
 					showswirl(target_turf)
