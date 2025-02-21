@@ -210,6 +210,15 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks)
 			processing_items -= src
 		..()
 
+	bless_act()
+		for (var/id in src.food_effects)
+			var/datum/statusEffect/effect = getStatusPrototype(id)
+			if (effect.effect_quality == STATUS_QUALITY_NEGATIVE)
+				src.food_effects -= id
+		src.reagents.remove_reagent("cholesterol", 10)
+		src.reagents.remove_reagent("yuck", 10)
+		src.quality = max(src.quality, 2) //it's ok I guess
+
 	process()
 		if ((TIME - src.create_time >= 3 MINUTES) && (TIME - src.time_since_moved >= 1 MINUTE))
 			src.create_time = TIME

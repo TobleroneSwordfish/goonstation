@@ -38,6 +38,7 @@ ABSTRACT_TYPE(/datum/rite)
 		return ..()
 
 /datum/rite/feeding_the_floor //too easy?
+	blessing_type = /datum/targetable/bless/food
 	can_trigger(mob/user, obj/item/reagent_containers/food/food, turf/simulated/floor/floor)
 		if (!..())
 			return FALSE
@@ -126,9 +127,14 @@ ABSTRACT_TYPE(/datum/rite)
 	name = "Bless machine"
 	allowed_types = list(/obj/machinery, /obj/submachine, /mob/living/silicon, /mob/living/critter/robotic)
 
+//maybe remove this?
 /datum/targetable/bless/tool
 	name = "Bless tool"
 	allowed_types = list(/obj/item) //look, anything can be a tool if you can hold it
+
+/datum/targetable/bless/food
+	name = "Bless food"
+	allowed_types = list(/obj/item/reagent_containers/food)
 
 /datum/statusEffect/blessed
 	id = "blessed"

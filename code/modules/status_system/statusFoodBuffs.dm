@@ -185,6 +185,7 @@
 	exclusiveGroup = "Food"
 	maxDuration = 6000
 	unique = 1
+	effect_quality = STATUS_QUALITY_POSITIVE
 	var/change = 18
 
 	big
@@ -248,6 +249,7 @@
 	exclusiveGroup = "Food"
 	maxDuration = 6000
 	unique = 1
+	effect_quality = STATUS_QUALITY_NEGATIVE
 
 	getChefHint()
 		. = "Makes the consumer feel more gassy."
@@ -260,6 +262,7 @@
 	exclusiveGroup = "Food"
 	maxDuration = 6000
 	unique = 1
+	effect_quality = STATUS_QUALITY_NEGATIVE
 
 	getChefHint()
 		. = "Makes the consumer's stomach feel more gassy."
@@ -272,6 +275,7 @@
 	exclusiveGroup = "Food"
 	maxDuration = 6000
 	unique = 1
+	effect_quality = STATUS_QUALITY_POSITIVE
 
 	getChefHint()
 		. = "Improves the consumer's vision in dark spaces"
@@ -410,6 +414,7 @@
 	exclusiveGroup = "Food"
 	maxDuration = 6000
 	unique = 1
+	effect_quality = STATUS_QUALITY_NEGATIVE
 
 	getChefHint()
 		. = "Gives the consumer an absolutely terrible breath smell."
@@ -421,6 +426,7 @@
 	maxDuration = 600
 	icon_state = "-"
 	unique = 1
+	effect_quality = STATUS_QUALITY_NEGATIVE
 	var/reagent_id = "slime"
 
 	onUpdate(timePassed)
@@ -434,6 +440,7 @@
 	exclusiveGroup = "Food"
 	maxDuration = 3000
 	unique = 1
+	effect_quality = STATUS_QUALITY_NEGATIVE
 
 	var/sweat_adjective = "" // used for getChefHint()
 
