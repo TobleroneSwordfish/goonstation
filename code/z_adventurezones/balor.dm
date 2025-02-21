@@ -122,3 +122,21 @@
 	And above all DO NOT stand on the pad when it's active, unless you feel like reciting code phrases to Lero security for the next 6 hours.<br><br>
 	- Technical Operative Banks
 	"}
+
+/obj/balor_teleporter
+	name = "short-range teleporter"
+	desc = "A precise teleporter that only works across short distances."
+	icon = 'icons/misc/32x64.dmi'
+	icon_state = "lrport"
+	var/landmark = LANDMARK_BALOR_START
+
+	Crossed(atom/movable/AM)
+		. = ..()
+
+		if (istype(AM, /obj/port_a_prisoner) || istype(AM, /mob/living))
+			var/target_turf =  get_turf(landmarks[landmark][1])
+			do_teleport(AM, target_turf, use_teleblocks = FALSE)
+			showswirl_out(src.loc)
+			leaveresidual(src.loc)
+			showswirl(target_turf)
+			leaveresidual(target_turf)

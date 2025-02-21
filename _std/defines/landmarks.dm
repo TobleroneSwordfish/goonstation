@@ -101,7 +101,8 @@
 #define LANDMARK_SUMMON "summon"
 
 //balor
-#define LANDMARK_BALOR_START "balor"
+#define LANDMARK_BALOR_START "balor_start"
+#define LANDMARK_BALOR_ENTRANCE "balor_entrance"
 
 /// allowed turfs for telesci
 #define LANDMARK_TELESCI "telesci"

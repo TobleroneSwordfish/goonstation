@@ -661,3 +661,6 @@ var/global/list/job_start_locations = list()
 
 /obj/landmark/balor_start
 	name = LANDMARK_BALOR_START
+
+/obj/landmark/balor_entrance
+	name = LANDMARK_BALOR_ENTRANCE
