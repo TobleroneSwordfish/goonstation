@@ -304,6 +304,9 @@ TYPEINFO(/atom)
 		return 1
 	return 0
 
+/atom/proc/bless_act()
+	return
+
 /atom/proc/emp_act()
 	src.storage?.storage_emp_act()
 
