@@ -266,3 +266,16 @@
 	position = generator("box", list(-6,-5,0), list(6,20,0), UNIFORM_RAND)
 	gravity = list(0, -1, 0)
 	scale = list(1.5, 1.5)
+
+
+/particles/blood_sparkles
+	color = generator("color", "#b10000", "#ff3333", UNIFORM_RAND)
+	spawning = 0.5
+	count = 30
+	lifespan = 30
+	fade = 20
+	position = generator("vector", list(-10,-10,0), list(10,10,0), NORMAL_RAND)
+	color_change = 0
+	friction = 0.2
+	drift = generator("vector", list(0.25,0.25,0), list(-0.25,-0.25,0), UNIFORM_RAND)
+	fadein = 5

@@ -34,7 +34,12 @@ ABSTRACT_TYPE(/datum/rite)
 
 	grant_blessing(mob/user, obj/item/reagent_containers/container, turf/space/target)
 		target.visible_message(SPAN_NOTICE("The blood freezes into glimmering crystals and disperses into the vacuum."))
-		target.color = "red" //TODO: sparkles
+		var/particles/blood_sparkles/sparkles = new
+		target.UpdateParticles(sparkles, "blood_sparkles")
+		SPAWN(0.6 SECONDS)
+			sparkles.spawning = FALSE
+			sleep(1 SECOND)
+			target.ClearSpecificParticles("blood_sparkles")
 		return ..()
 
 /datum/rite/feeding_the_floor //too easy?
