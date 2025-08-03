@@ -18,7 +18,7 @@
 (+)Added a few new tanktop variants to the clothing booth.
 (u)JORJ949
 (p)24139
-(e)🆕🧑‍✈️|C-Feature, A-Command
+(e)🆕🧑‍✈️|C-Feature, A-Commandlea
 (+)Roundstart head of staff announcements will now be ordered by rank.
 (t)thu jul 31 25
 (u)aloe
