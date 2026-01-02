@@ -21,7 +21,7 @@ const MaintenencePanel = () => {
   const { act, data } = useBackend<SimulatorData>();
   let resetButton = (
     <Button icon="wifi" onClick={() => reset()}>
-      Reset Connection
+      Don't Reset Connection
     </Button>
   );
   const reset = () => {
