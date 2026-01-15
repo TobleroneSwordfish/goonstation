@@ -84,15 +84,16 @@ var/global/list/turf/hotly_processed_turfs = list()
 	return GM
 
 /// Checks if gas can pass between two turfs. If anything within the turf does not allow passage, the check fails.
+/// group_building: TRUE when this proc is called during airgroup building, allowing objects to separate airgroups while not being solid
 /// Returns: TRUE if gas can pass, FALSE if not.
-/turf/gas_cross(turf/target)
+/turf/gas_cross(turf/target, group_building = FALSE)
 	if(isnull(target) || target.gas_impermeable || src.gas_impermeable)
 		return FALSE
 	for(var/atom/movable/AM as anything in src)
-		if(!AM.gas_cross(target))
+		if(!AM.gas_cross(target, group_building))
 			return FALSE
 	for(var/atom/movable/AM as anything in target)
-		if(!AM.gas_cross(src))
+		if(!AM.gas_cross(src, group_building))
 			return FALSE
 	return TRUE
 

@@ -18,8 +18,9 @@ var/global/datum/controller/air_system/air_master
 var/global/total_gas_mixtures = 0
 
 /// Checks whether or not gases can pass through. Called by [/turf/gas_cross] for all atoms within the turf.
+/// group_building: TRUE when this proc is called during airgroup building, allowing objects to separate airgroups while not being solid
 /// Returns: TRUE for allowed pass and FALSE for denied pass.
-/atom/proc/gas_cross(turf/target)
+/atom/proc/gas_cross(turf/target, group_building = FALSE)
 	return !src.gas_impermeable
 
 /datum/controller/air_system
@@ -98,7 +99,7 @@ var/global/total_gas_mixtures = 0
 			test.length_space_border = 0
 			for(var/direction in cardinal)
 				var/turf/T = get_step(test,direction)
-				if(!(T in members) && test.gas_cross(T))
+				if(!(T in members) && test.gas_cross(T, TRUE))
 					if(issimulatedturf(T))
 						if(!T:parent)
 							possible_members += T

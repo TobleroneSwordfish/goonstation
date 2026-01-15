@@ -176,6 +176,11 @@ TYPEINFO(/obj/machinery/door/firedoor)
 	..()
 	check_nextstate()
 
+/obj/machinery/door/firedoor/gas_cross(turf/target, group_building)
+	if (group_building)
+		return FALSE
+	. = ..()
+
 /obj/machinery/door/firedoor/border_only
 
 /obj/machinery/door/firedoor/border_only/gas_cross(turf/target)

@@ -30,3 +30,7 @@
 		icon_state = "door0"
 		density = FALSE
 		opacity = FALSE
+
+/obj/fakeobject/airlock_broken/gas_cross(turf/target, group_building)
+	if (group_building)
+		return FALSE
