@@ -211,7 +211,7 @@
 
 				if ("Observe")
 					var/confirmation_message = "Are you absolutely sure you want to abandon the round? "
-#ifdef RP_MODE
+#ifdef RP_RESPAWN
 					confirmation_message += "You can respawn back to the round later."
 #else
 					confirmation_message += "You will be an observer until the next round."

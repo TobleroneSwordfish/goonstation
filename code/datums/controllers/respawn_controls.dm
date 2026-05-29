@@ -40,7 +40,7 @@ var/datum/respawn_controls/respawn_controller
 		..()
 		respawnees = list()
 
-#ifdef RP_MODE
+#ifdef RP_RESPAWN
 		rp_alert = 1
 		respawns_enabled = 1
 #endif

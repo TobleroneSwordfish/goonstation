@@ -120,6 +120,8 @@ var/ZLOG_START_TIME
 #define RP_SIMS
 //anything to do with events being less harsh on RP - blackholes disabled, that kind of thing
 #define NICER_EVENTS
+//the RP respawn ticker and top of screen html
+#define RP_RESPAWN
 #endif
 
 #ifdef FUSION_MODE
