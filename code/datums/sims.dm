@@ -459,7 +459,7 @@
 		SPAWN(1 SECOND) //Give it some time to finish creating the simsController because fak
 			for (var/M in childrentypesof(/datum/simsMotive))
 				motives[M] = new M(1)
-#ifdef RP_MODE
+#ifdef RP_SIMS
 			SPAWN(0)
 				set_multiplier(1)
 #endif

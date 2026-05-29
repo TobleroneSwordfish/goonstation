@@ -1005,7 +1005,7 @@ client/proc/toggle_ghost_respawns()
 		if (ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if (global_sims_mode && !H.sims)
-#ifdef RP_MODE
+#ifdef RP_SIMS
 				H.sims = new /datum/simsHolder/rp(H)
 #else
 				H.sims = new /datum/simsHolder/human(H)

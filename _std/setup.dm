@@ -115,6 +115,7 @@ var/ZLOG_START_TIME
 
 #ifdef RP_MODE
 #define SLOWER_ANTAGS
+#define RP_SIMS
 #endif
 
 #ifdef FUSION_MODE

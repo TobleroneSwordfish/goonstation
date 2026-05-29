@@ -392,7 +392,7 @@ var/global
 
 	literal_disarm = 0
 
-#ifdef RP_MODE
+#ifdef RP_SIMS
 	global_sims_mode = 1 // SET THIS TO 0 TO DISABLE SIMS MODE
 #else
 	global_sims_mode = 0 // SET THIS TO 0 TO DISABLE SIMS MODE

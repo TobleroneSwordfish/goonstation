@@ -194,7 +194,7 @@
 
 
 	if (global_sims_mode) // IF YOU ARE HERE TO DISABLE SIMS MODE, DO NOT TOUCH THIS. LOOK IN GLOBAL.DM
-#ifdef RP_MODE
+#ifdef RP_SIMS
 		sims = new /datum/simsHolder/rp(src)
 #else
 		sims = new /datum/simsHolder/human(src)
