@@ -1,7 +1,7 @@
 /datum/random_event/major/black_hole
 	name = "Black Hole"
 	required_elapsed_round_time = 26.6 MINUTES
-#ifdef RP_MODE
+#ifdef NICER_EVENTS
 	disabled = 1
 #endif
 

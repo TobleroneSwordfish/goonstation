@@ -7,7 +7,7 @@
 		0,  0,  0,  2,
 		0,  0,  0,  0,
 	)
-#ifdef RP_MODE
+#ifdef NICER_EVENTS
 	required_elapsed_round_time = 40 MINUTES
 	weight = 50 //less events to choose from on RP and radstorms get annoying when there's 3 per shift
 #else

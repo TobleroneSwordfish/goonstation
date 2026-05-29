@@ -4,7 +4,7 @@
 	weight = 60
 	var/derelictchoice = null
 	required_elapsed_round_time = 45 MINUTES
-#ifdef RP_MODE
+#ifdef NICER_EVENTS
 	disabled = 1
 #endif
 

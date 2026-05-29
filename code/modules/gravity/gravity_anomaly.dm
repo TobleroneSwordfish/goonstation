@@ -373,7 +373,7 @@ ABSTRACT_TYPE(/datum/grav_fault/major)
 ABSTRACT_TYPE(/datum/grav_fault/extreme)
 /datum/grav_fault/extreme
 
-#ifndef RP_MODE
+#ifndef NICER_EVENTS
 /// Spawns a black hole spawner.
 /datum/grav_fault/extreme/black_hole/effect(turf/origin)
 	. = ..()

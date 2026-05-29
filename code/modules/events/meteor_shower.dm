@@ -6,7 +6,7 @@ var/global/meteor_shower_active = 0
 #ifdef APRIL_FOOLS
 	required_elapsed_round_time = 10 MINUTES
 	weight = 300
-#elif defined(RP_MODE)
+#elif defined(NICER_EVENTS)
 	required_elapsed_round_time = 55 MINUTES
 #else
 	required_elapsed_round_time = 26.6 MINUTES

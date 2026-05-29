@@ -1,6 +1,6 @@
 /datum/random_event/major/vampire_teg
 	name = "Haunted TEG"
-#ifdef RP_MODE
+#ifdef NICER_EVENTS
 	required_elapsed_round_time = 40 MINUTES
 #else
 	required_elapsed_round_time = 26.6 MINUTES

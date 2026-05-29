@@ -114,12 +114,17 @@ var/ZLOG_START_TIME
 #define MAPVOTE_ACTIVE_WEIGHT 1
 
 #ifdef RP_MODE
+//anything to do with antag differences due to escalation requirements - salvager inventory, werewolf disabling, etc.
 #define SLOWER_ANTAGS
+//roleplay style sims define
 #define RP_SIMS
+//anything to do with events being less harsh on RP - blackholes disabled, that kind of thing
+#define NICER_EVENTS
 #endif
 
 #ifdef FUSION_MODE
 #undef SLOWER_ANTAGS
+#undef NICER_EVENTS
 #endif
 
 //what counts as participation?
