@@ -745,16 +745,23 @@ var/global/curr_day = null
 	set name = "Ping"
 	boutput(usr, SPAN_HINT("Pong"))
 
-#ifdef RP_MODE
-/client/proc/cmd_rp_rules()
-	set name = "Rules - RP"
-	set category = "Commands"
+//byond doesn't let us modify verbs at runtime so we just #define wrap the entire thing
+#define DECLARE_RP_RULES(COMMAND_NAME, ACW)\
+/client/proc/cmd_rp_rules(){\
+	set name = COMMAND_NAME;\
+	set category = "Commands";\
+	var/cant_interact_time = null;\
+	if (isnewplayer(src.mob) && src.player.get_rounds_participated_rp() <= 10 && !src.player.cloudSaves.getData("bypass_round_reqs")){\
+		cant_interact_time = 15 SECONDS;\
+	};\
+	tgui_alert(src, content_window = ACW, do_wait = FALSE, cant_interact = cant_interact_time);\
+}
 
-	var/cant_interact_time = null
-	if (isnewplayer(src.mob) && src.player.get_rounds_participated_rp() <= 10 && !src.player.cloudSaves.getData("bypass_round_reqs"))
-		cant_interact_time = 15 SECONDS
-
-	tgui_alert(src, content_window = "rpRules", do_wait = FALSE, cant_interact = cant_interact_time)
+#if defined(RP_MODE) && !defined(FUSION_MODE)
+DECLARE_RP_RULES("Rules - RP", "rpRules")
+#endif
+#ifdef FUSION_MODE
+DECLARE_RP_RULES("Rules - Fusion", "fusionRules")
 #endif
 
 /client/verb/changeServer(var/server as text)
