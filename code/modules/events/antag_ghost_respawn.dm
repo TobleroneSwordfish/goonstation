@@ -20,7 +20,7 @@
 	message_delay = 5 MINUTES // (+ ghost_confirmation_delay). Don't out them too early, blobs in particular need time to establish themselves.
 	targetable = TRUE
 	//sigh
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	disabled = 1
 #endif
 	var/antagonist_type = "Blob"
@@ -67,7 +67,7 @@
 				message_admins("Antagonist Spawn (non-admin) is disabled in this game mode, aborting.")
 				return
 			var/list/possible_antags
-			#ifndef RP_MODE
+			#ifndef SLOWER_ANTAGS
 			possible_antags = list("Blob", "Hunter", "Werewolf", "Wizard", "Wraith", "Wrestler", "Wrestle Doodle", "Vampire", "Changeling", "Flockmind", "Space Phoenix")
 			#else
 			possible_antags = list("Space Phoenix")

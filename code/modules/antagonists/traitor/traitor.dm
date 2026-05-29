@@ -112,7 +112,7 @@
 
 	assign_objectives()
 		var/datum/objective_set/objective_set_path
-		#ifdef RP_MODE
+		#ifdef SLOWER_ANTAGS
 		objective_set_path = pick(typesof(/datum/objective_set/traitor/rp_friendly))
 		#else
 		objective_set_path = pick(typesof(/datum/objective_set/traitor))

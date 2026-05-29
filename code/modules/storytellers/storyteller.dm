@@ -15,7 +15,7 @@ ABSTRACT_TYPE(/datum/storyteller)
 	var/spawn_event_start = 23 MINUTES
 	var/spawn_time_range = list(8 MINUTES, 12 MINUTES)
 	var/dead_players_threshold = 0.3
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	var/alive_antags_threshold = 0.04
 #else
 	var/alive_antags_threshold = 0.1

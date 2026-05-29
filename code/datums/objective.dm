@@ -1547,7 +1547,7 @@ ABSTRACT_TYPE(/datum/objective/madness)
 	objective_list = list(/datum/objective/specialist/absorb)
 	escape_choices = list(
 		/datum/objective/escape,
-#ifndef RP_MODE
+#ifndef SLOWER_ANTAGS
 		/datum/objective/escape/hijack_group/changeling
 #endif
 	)
@@ -1556,7 +1556,7 @@ ABSTRACT_TYPE(/datum/objective/madness)
 	objective_list = list(/datum/objective/specialist/drinkblood)
 	escape_choices = list(
 		/datum/objective/escape,
-#ifndef RP_MODE
+#ifndef SLOWER_ANTAGS
 		/datum/objective/escape/hijack_group/vampire
 #endif
 	)

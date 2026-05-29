@@ -923,7 +923,7 @@ ABSTRACT_TYPE(/datum/commodity/magpie/sell)
 		price = 399
 		amount = 10
 
-#ifndef RP_MODE
+#ifndef SLOWER_ANTAGS
 	rifle_556
 		comname = "Rifle 5.56x45 conversion"
 		desc = "Survival rifle conversion kit to 5.56x45mm NATO."
@@ -1112,7 +1112,7 @@ ABSTRACT_TYPE(/datum/commodity/magpie/special/sell/arms)
 		price = 500
 		amount = 4
 
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	rifle_556
 		comname = "Rifle 5.56x45 conversion"
 		desc = "Survival rifle conversion kit to 5.56x45mm NATO."

@@ -51,7 +51,7 @@
 				return
 
 		if(!src.dead_drop_type)
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 			src.dead_drop_type = /datum/dead_drop/infil
 #else
 			src.dead_drop_type = /datum/dead_drop/chaos
@@ -102,7 +102,7 @@
 	var/keycode = random_hex(4)
 
 	if(!dead_drop_type)
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 		dead_drop_type = /datum/dead_drop/infil
 #else
 		dead_drop_type = /datum/dead_drop/chaos

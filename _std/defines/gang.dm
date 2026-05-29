@@ -79,7 +79,7 @@
 
 
 // GAMEMODE DEFINES
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 #define GANG_CRATE_INITIAL_DROP  30 MINUTES //!  when the first gang crate drops on RP
 #define GANG_CRATE_DROP_FREQUENCY 40 MINUTES //! how often gang crates are dropped on RP
 #else
@@ -88,7 +88,7 @@
 #endif
 
 
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 #define GANG_LOOT_INITIAL_DROP 15 MINUTES //! when the first vandalism objectives are assigned on RP
 #define GANG_LOOT_DROP_FREQUENCY 30 MINUTES //! how often vandalism objectives are assigned on RP
 #else

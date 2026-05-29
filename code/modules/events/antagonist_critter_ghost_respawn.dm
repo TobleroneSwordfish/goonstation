@@ -61,7 +61,7 @@
 	targetable = TRUE
 	var/num_critters = 0
 	var/critter_type = null
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	disabled = 1
 #endif
 

@@ -113,6 +113,14 @@ var/ZLOG_START_TIME
 #define MAPVOTE_PASSIVE_WEIGHT 1
 #define MAPVOTE_ACTIVE_WEIGHT 1
 
+#ifdef RP_MODE
+#define SLOWER_ANTAGS
+#endif
+
+#ifdef FUSION_MODE
+#undef SLOWER_ANTAGS
+#endif
+
 //what counts as participation?
 #ifdef RP_MODE
 #define MAX_PARTICIPATE_TIME 60 MINUTES //the maximum shift time before it doesnt count as "participating" in the round

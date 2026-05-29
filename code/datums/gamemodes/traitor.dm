@@ -10,7 +10,7 @@
 
 	var/const/traitors_possible = 5
 
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	var/const/pop_divisor = 10
 #else
 	var/const/pop_divisor = 8

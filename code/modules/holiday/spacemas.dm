@@ -41,7 +41,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			SPAWN(0) // Might have been responsible for locking up the mob loop via human Life() -> death() -> modify_christmas_cheer() -> santa_krampus_spawn().
 				santa_krampus_spawn(0)
 #endif
-#if defined(XMAS) && !defined(RP_MODE)
+#if defined(XMAS) && !defined(SLOWER_ANTAGS)
 		if (christmas_cheer <= 10 && !krampus_spawned)
 			SPAWN(0)
 				santa_krampus_spawn(1)

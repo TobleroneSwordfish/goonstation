@@ -6,7 +6,7 @@
 	var/list/datum/gang/gangs = list()
 
 	var/const/setup_min_teams = 2
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	var/const/setup_max_teams = 2
 #else
 	var/const/setup_max_teams = 3
@@ -24,7 +24,7 @@
 	boutput(world, "<B>A number of gangs are competing for control of the station!</B>")
 	boutput(world, "<B>Gang members are antagonists and can kill or be killed!</B>")
 
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 #define PLAYERS_PER_GANG_GENERATED 15
 #else
 #define PLAYERS_PER_GANG_GENERATED 12

@@ -19,7 +19,7 @@ var/datum/event_controller/random_events
 	var/minor_event_cycle_count = 0
 
 	var/list/antag_spawn_events = list()
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	var/alive_antags_threshold = 0.04
 #else
 	var/alive_antags_threshold = 0.1

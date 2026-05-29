@@ -296,7 +296,7 @@
 	New()
 		. = ..()
 		awaken_time = rand(5, 10)*100
-		#ifdef RP_MODE
+		#ifdef SLOWER_ANTAGS
 		awaken_time *= 2
 		#endif
 		src.tainted_saliva_reservoir = new/datum/reagents(500)

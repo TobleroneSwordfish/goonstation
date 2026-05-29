@@ -14,7 +14,7 @@
 	var/const/waittime_l = 600	// Minimum after round start to send threat information to printer
 	var/const/waittime_h = 1800	// Maximum after round start to send threat information to printer
 
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	var/const/bounty_refresh_interval = 25 MINUTES
 #else
 	var/const/bounty_refresh_interval = 15 MINUTES
@@ -23,7 +23,7 @@
 
 	var/const/spies_possible = 7
 
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	var/const/pop_divisor = 10
 #else
 	var/const/pop_divisor = 6

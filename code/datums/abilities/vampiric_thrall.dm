@@ -55,7 +55,7 @@
 	var/mob/vamp_isbiting = null
 	var/datum/abilityHolder/vampire/master
 
-#ifdef RP_MODE
+#ifdef SLOWER_ANTAGS
 	var/blood_decay = 0.125
 #else
 	var/blood_decay = 0.25

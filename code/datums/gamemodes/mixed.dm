@@ -52,7 +52,7 @@
 	var/num_arcfiends = 0
 	var/num_flockminds = 0
 	var/num_salvagers = 0
-#if defined(XMAS) && !defined(RP_MODE)
+#if defined(XMAS) && !defined(SLOWER_ANTAGS)
 	src.traitor_types[ROLE_GRINCH] = 1;
 	src.latejoin_antag_roles[ROLE_GRINCH] = 1;
 #endif
