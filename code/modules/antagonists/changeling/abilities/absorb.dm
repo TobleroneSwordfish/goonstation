@@ -76,7 +76,7 @@
 		var/mob/living/ownerMob = src.holder.owner
 		var/datum/abilityHolder/changeling/C = src.holder
 		if (istype(C))
-			C.addDna(target)
+			C.addDna(target, 0, 0.5)
 		boutput(ownerMob, SPAN_NOTICE("We have absorbed [target]!"))
 		ownerMob.visible_message(SPAN_ALERT("<B>[ownerMob] sucks the fluids out of [target]!</B>"))
 		logTheThing(LOG_COMBAT, ownerMob, "absorbs [constructTarget(target,"combat")] as a changeling [log_loc(ownerMob)].")

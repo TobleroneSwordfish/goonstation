@@ -38,19 +38,15 @@
 			from_who.ensure_speech_tree().RemoveSpeechOutput(SPEECH_OUTPUT_HIVECHAT_MEMBER, subchannel = ref(src))
 			from_who.ensure_listen_tree().RemoveListenInput(LISTEN_INPUT_HIVECHAT, subchannel = ref(src))
 
-	proc/addDna(var/mob/living/carbon/human/M, var/headspider_override = 0)
+	proc/addDna(var/mob/living/carbon/human/M, var/headspider_override = 0, var/multiplier = 1)
 		var/datum/abilityHolder/changeling/O = M.get_ability_holder(/datum/abilityHolder/changeling)
 		if (O)
 			boutput(owner, SPAN_NOTICE("[M] was a changeling! We have absorbed [his_or_her(M)] entire genetic structure!"))
 			logTheThing(LOG_COMBAT, owner, "absorbs [constructTarget(M,"combat")] as a changeling [log_loc(owner)].")
 
-			if (headspider_override != 1) // Headspiders shouldn't be free.
-				src.points += M.dna_to_absorb // 10 regular points for their body...
-
 			if (O.points > 0) // ...and then grab their DNA stockpile too.
 				src.points = max(0, src.points + O.points)
 
-			src.absorbtions++ // Same principle.
 			for(var/D in O.absorbed_dna)
 				src.absorbed_dna[D] = O.absorbed_dna[D]
 				src.absorbtions++
@@ -65,12 +61,10 @@
 		/* LAGG NOTE:
 			tailsnake, strangles people and attaches themselves to peoples butts and makes it hard to do stuff */
 
-		else
-			src.absorbed_dna[M.real_name] = new /datum/absorbedIdentity(M)
-
-			if (headspider_override != 1)
-				src.points += M.dna_to_absorb
-			src.absorbtions++
+		src.absorbed_dna[M.real_name] = new /datum/absorbedIdentity(M)
+		src.absorbtions++
+		if (headspider_override != 1) // Headspiders shouldn't be free.
+			src.points += round(M.dna_to_absorb * multiplier) // 10 regular points for their body...
 		src.insert_into_hivemind(M)
 
 	proc/insert_into_hivemind(var/mob/M)
